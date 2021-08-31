@@ -2,8 +2,8 @@ package io.esastack.adapter.springboot.test.controller;
 
 import io.esastack.adapter.springboot.test.exception.FallbackException;
 import io.esastack.adapter.springboot.test.fallback.FallbackComponent;
+import io.esastack.servicekeeper.core.annotation.CircuitBreaker;
 import io.esastack.servicekeeper.core.annotation.Fallback;
-import io.esastack.servicekeeper.core.annotation.RateLimiter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,85 +13,113 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 @Controller
-@RequestMapping("/rateLimit")
-public class RateLimitController {
+@RequestMapping("/circuitBreaker/predicateByException")
+public class CircuitBreakerPredicateByExceptionController {
 
     @GetMapping("/withoutFallback")
     @ResponseBody
-    @RateLimiter(value = 2, limitRefreshPeriod = "10s")
+    @CircuitBreaker(ringBufferSizeInClosedState = 4,
+            ringBufferSizeInHalfOpenState = 2)
     public String withoutFallback() {
-        return "rateLimit 2 times in 10s without fallback";
+        throw new RuntimeException();
     }
 
     @GetMapping("/withFallbackToValue")
     @ResponseBody
-    @RateLimiter(value = 2, limitRefreshPeriod = "10s")
+    @CircuitBreaker(ringBufferSizeInClosedState = 3,
+            ringBufferSizeInHalfOpenState = 2,
+            failureRateThreshold = 0.33f)
     @Fallback(fallbackValue = "fallbackValue")
-    public String withFallbackToValue() {
-        return "rateLimit 2 times in 10s with fallback to value";
+    public String withFallbackToValue()  {
+        throw new RuntimeException();
     }
 
     @GetMapping("/withFallbackToException")
     @ResponseBody
-    @RateLimiter(value = 2, limitRefreshPeriod = "10s")
+    @CircuitBreaker(ringBufferSizeInClosedState = 3,
+            ringBufferSizeInHalfOpenState = 2,
+            failureRateThreshold = 0.33f)
     @Fallback(fallbackExceptionClass = FallbackException.class)
     public String withFallbackToException() {
-        return "rateLimit 2 times in 10s with fallback to exception";
+        throw new RuntimeException();
     }
 
     @GetMapping("/withFallbackToMethod")
     @ResponseBody
-    @RateLimiter(value = 2, limitRefreshPeriod = "10s")
+    @CircuitBreaker(ringBufferSizeInClosedState = 3,
+            ringBufferSizeInHalfOpenState = 2,
+            failureRateThreshold = 0.33f)
     @Fallback(fallbackClass = io.esastack.adapter.springboot.test.fallback.Fallback.class, fallbackMethod = "fallbackMethod")
     public String withFallbackToMethod() {
-        return "rateLimit 2 times in 10s with fallback to method";
+        throw new RuntimeException();
     }
 
     @GetMapping("/withFallbackToMethodOfComponent")
     @ResponseBody
-    @RateLimiter(value = 2, limitRefreshPeriod = "10s")
+    @CircuitBreaker(ringBufferSizeInClosedState = 3,
+            ringBufferSizeInHalfOpenState = 2,
+            failureRateThreshold = 0.33f)
     @Fallback(fallbackClass = FallbackComponent.class, fallbackMethod = "fallbackMethod")
     public String withFallbackToMethodOfComponent() {
-        return "rateLimit 2 times in 10s with fallback to method of component";
+        throw new RuntimeException();
     }
 
     @GetMapping("/asyncWithoutFallback")
     @ResponseBody
-    @RateLimiter(value = 2, limitRefreshPeriod = "10s")
+    @CircuitBreaker(ringBufferSizeInClosedState = 3,
+            ringBufferSizeInHalfOpenState = 2,
+            failureRateThreshold = 0.33f)
     public CompletionStage<String> asyncWithoutFallback() {
-        return CompletableFuture.completedFuture("async 2 times in 10s without fallback");
+        return CompletableFuture.supplyAsync(() -> {
+            throw new RuntimeException();
+        });
     }
 
     @GetMapping("/asyncWithFallbackToValue")
     @ResponseBody
-    @RateLimiter(value = 2, limitRefreshPeriod = "10s")
+    @CircuitBreaker(ringBufferSizeInClosedState = 3,
+            ringBufferSizeInHalfOpenState = 2,
+            failureRateThreshold = 0.33f)
     @Fallback(fallbackValue = "fallbackValue")
     public CompletionStage<String> asyncWithFallbackToValue() {
-        return CompletableFuture.completedFuture("async 2 times in 10s with fallback to value");
+        return CompletableFuture.supplyAsync(() -> {
+            throw new RuntimeException();
+        });
     }
 
     @GetMapping("/asyncWithFallbackToException")
     @ResponseBody
-    @RateLimiter(value = 2, limitRefreshPeriod = "10s")
+    @CircuitBreaker(ringBufferSizeInClosedState = 3,
+            ringBufferSizeInHalfOpenState = 2,
+            failureRateThreshold = 0.33f)
     @Fallback(fallbackExceptionClass = FallbackException.class)
     public CompletionStage<String> asyncWithFallbackToException() {
-        return CompletableFuture.completedFuture("async 2 times in 10s with fallback to exception");
+        return CompletableFuture.supplyAsync(() -> {
+            throw new RuntimeException();
+        });
     }
 
     @GetMapping("/asyncWithFallbackToMethod")
     @ResponseBody
-    @RateLimiter(value = 2, limitRefreshPeriod = "10s")
+    @CircuitBreaker(ringBufferSizeInClosedState = 3,
+            ringBufferSizeInHalfOpenState = 2,
+            failureRateThreshold = 0.33f)
     @Fallback(fallbackClass = io.esastack.adapter.springboot.test.fallback.Fallback.class, fallbackMethod = "asyncFallbackMethod")
     public CompletionStage<String> asyncWithFallbackToMethod() {
-        return CompletableFuture.completedFuture("async 2 times in 10s with fallback to method");
+        return CompletableFuture.supplyAsync(() -> {
+            throw new RuntimeException();
+        });
     }
 
     @GetMapping("/asyncWithFallbackToMethodOfComponent")
     @ResponseBody
-    @RateLimiter(value = 2, limitRefreshPeriod = "10s")
+    @CircuitBreaker(ringBufferSizeInClosedState = 3,
+            ringBufferSizeInHalfOpenState = 2,
+            failureRateThreshold = 0.33f)
     @Fallback(fallbackClass = FallbackComponent.class, fallbackMethod = "asyncFallbackMethod")
     public CompletionStage<String> asyncWithFallbackToMethodOfComponent() {
-        return CompletableFuture.completedFuture("async 2 times in 10s with fallback to method of component");
+        return CompletableFuture.supplyAsync(() -> {
+            throw new RuntimeException();
+        });
     }
-
 }
