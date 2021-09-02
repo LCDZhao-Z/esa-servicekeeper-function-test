@@ -1,7 +1,10 @@
 package io.esastack.adapter.springboot.test.fallback;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
+import io.esastack.servicekeeper.core.exception.CircuitBreakerNotPermittedException;
+import io.esastack.servicekeeper.core.exception.ConcurrentOverFlowException;
+import io.esastack.servicekeeper.core.exception.RateLimitOverflowException;
+
+import java.io.IOException;
 
 public class Fallback {
 
@@ -9,7 +12,19 @@ public class Fallback {
         return "fallbackMethod";
     }
 
-    public CompletionStage<String> asyncFallbackMethod() {
-        return CompletableFuture.completedFuture("fallbackMethod");
+    public String fallbackMethod(RuntimeException e) {
+        return "bizFallback";
+    }
+
+    public String fallbackMethod(RateLimitOverflowException e) {
+        return "rateLimitFallback";
+    }
+
+    public String fallbackMethod(ConcurrentOverFlowException e) {
+        return "concurrentFallback";
+    }
+
+    public String fallbackMethod(CircuitBreakerNotPermittedException e) {
+        return "circuitBreakerFallback";
     }
 }
