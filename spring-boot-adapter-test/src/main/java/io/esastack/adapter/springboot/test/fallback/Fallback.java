@@ -12,7 +12,7 @@ public class Fallback {
         return "fallbackMethod";
     }
 
-    public String fallbackMethod(RuntimeException e) {
+    public String fallbackMethod(Throwable e) {
         return "bizFallback";
     }
 
