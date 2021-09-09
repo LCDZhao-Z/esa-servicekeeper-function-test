@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cabin-test</artifactId>
+        <groupId>io.esastack</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>sailor-config</artifactId>
+
+    <modules>
+        <module>spring-sailor-source</module>
+        <module>spring-boot-sailor-source</module>
+        <module>restlight-sailor-source</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.esastack</groupId>
+            <artifactId>servicekeeper-configsource-sailor</artifactId>
+            <classifier>cabin-classifier</classifier>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.protobuf</groupId>
+                    <artifactId>protobuf-java-util</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 测试cabin隔离是否有效 -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>esa-servicekeeper-function-test</artifactId>
+        <groupId>io.esastack</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cabin-test</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>file-config</module>
+        <module>sailor-config</module>
+        <module>spring-boot-sailot-source</module>
+        <module>sailor-config/restlight-sailor-source</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.esastack</groupId>
+            <artifactId>cabin-core</artifactId>
+        </dependency>
+    </dependencies>
+</project>

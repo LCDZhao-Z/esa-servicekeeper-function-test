@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cabin-test</artifactId>
+        <groupId>io.esastack</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>files-config</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>spring-file-source</module>
+        <module>spring-boot-file-source</module>
+        <module>restlight-file-source</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.esastack</groupId>
+            <artifactId>servicekeeper-configsource-file</artifactId>
+            <classifier>cabin-classifier</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>io.esastack</groupId>
+            <artifactId>cabin-core</artifactId>
+        </dependency>
+    </dependencies>
+</project>
