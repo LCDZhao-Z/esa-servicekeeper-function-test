@@ -12,10 +12,8 @@
     <artifactId>cabin-test</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>file-config</module>
+        <module>files-config</module>
         <module>sailor-config</module>
-        <module>spring-boot-sailot-source</module>
-        <module>sailor-config/restlight-sailor-source</module>
     </modules>
 
     <dependencies>

@@ -29,7 +29,7 @@
         <java_source_version>1.8</java_source_version>
         <java_target_version>1.8</java_target_version>
         <encoding>UTF-8</encoding>
-        <servicekeeper.version>0.0.1-SNAPSHOT</servicekeeper.version>
+        <servicekeeper.version>0.1.0</servicekeeper.version>
         <spring.version>5.2.5.RELEASE</spring.version>
         <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
         <esa.commons.version>0.1.0</esa.commons.version>
@@ -42,6 +42,41 @@
             <groupId>io.esastack</groupId>
             <artifactId>commons</artifactId>
             <version>${esa.commons.version}</version>
+        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>io.esastack</groupId>-->
+        <!--            <artifactId>servicekeeper-metrics-actuator</artifactId>-->
+        <!--            <version>${servicekeeper.version}</version>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>io.esastack</groupId>
+            <artifactId>servicekeeper-metrics-micrometer</artifactId>
+            <version>${servicekeeper.version}</version>
+        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
+        <!--            <version>${spring.boot.version}</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.esastack</groupId>-->
+        <!--            <artifactId>restlight-starter-actuator</artifactId>-->
+        <!--            <version>${restlight.version}</version>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>esa</groupId>
+            <artifactId>metrics-exporter-starter</artifactId>
+            <version>1.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
+            <version>1.5.4-esa</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <version>1.5.4</version>
         </dependency>
     </dependencies>
 

@@ -21,11 +21,11 @@ public class Application {
         CabinAppBootstrap.run(args);
         ApplicationContext context = SpringApplication.run(Application.class, args);
         rateLimitTest(context);
-//        concurrentTest(context);
-//        circuitBreakerTest(context);
-//        retryTest(context);
-//        argsRateLimitTest(context);
-//        argConcurrentTest(context);
+        concurrentTest(context);
+        circuitBreakerTest(context);
+        retryTest(context);
+        argsRateLimitTest(context);
+        argConcurrentTest(context);
         argsCircuitBreakerTest(context);
     }
 

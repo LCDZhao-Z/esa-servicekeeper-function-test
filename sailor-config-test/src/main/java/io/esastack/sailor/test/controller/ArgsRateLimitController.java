@@ -16,7 +16,7 @@ public class ArgsRateLimitController {
     public String withoutFallback(
             @ArgsRateLimiter(limitRefreshPeriod = "10s", limitForPeriodMap = "{LiMing: 1, WangWu: 2}")
             @PathVariable String name) throws InterruptedException {
-        Thread.sleep(1000 * 10);
+        //Thread.sleep(1000 * 10);
         return name;
     }
 

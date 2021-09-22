@@ -22,12 +22,6 @@
             <groupId>io.esastack</groupId>
             <artifactId>servicekeeper-configsource-sailor</artifactId>
             <classifier>cabin-classifier</classifier>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.protobuf</groupId>
-                    <artifactId>protobuf-java-util</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- 测试cabin隔离是否有效 -->

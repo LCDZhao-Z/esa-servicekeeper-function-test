@@ -1,7 +1,7 @@
 package io.esastack.adapter.restlight.test.fallback;
 
 import io.esastack.servicekeeper.core.exception.CircuitBreakerNotPermittedException;
-import io.esastack.servicekeeper.core.exception.ConcurrentOverFlowException;
+import io.esastack.servicekeeper.core.exception.ConcurrentOverflowException;
 import io.esastack.servicekeeper.core.exception.RateLimitOverflowException;
 
 public class Fallback {
@@ -18,7 +18,7 @@ public class Fallback {
         return "rateLimitFallback";
     }
 
-    public String fallbackMethod(ConcurrentOverFlowException e) {
+    public String fallbackMethod(ConcurrentOverflowException e) {
         return "concurrentFallback";
     }
 

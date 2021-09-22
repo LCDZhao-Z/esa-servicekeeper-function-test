@@ -27,12 +27,12 @@ public class Application {
     public static void main(String[] args) throws InterruptedException, IOException {
         CabinAppBootstrap.run(args);
         ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-//        rateLimitTest(context);
-//        concurrentTest(context);
-//        circuitBreakerTest(context);
-//        retryTest(context);
-//        argsRateLimitTest(context);
-//        argConcurrentTest(context);
+        rateLimitTest(context);
+        concurrentTest(context);
+        circuitBreakerTest(context);
+        retryTest(context);
+        argsRateLimitTest(context);
+        argConcurrentTest(context);
         argsCircuitBreakerTest(context);
     }
 

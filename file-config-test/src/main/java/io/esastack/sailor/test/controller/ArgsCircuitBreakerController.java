@@ -15,7 +15,7 @@ public class ArgsCircuitBreakerController {
     @ResponseBody
     public String withoutFallback(
             @ArgsCircuitBreaker(failureRateThresholdMap = "{LiMing: 20.0f, WangWu: 30.0f}",
-                    ringBufferSizeInClosedState = 50)
+                    ringBufferSizeInClosedState = 5)
             @PathVariable String name) throws InterruptedException {
         Thread.sleep(100);
         return name;
